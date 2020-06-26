@@ -1,2 +1,6 @@
-# ttdd
-TypeScript-Test-Driven-Development
+# TTDD
+
+```
+yarn install
+yarn test
+```

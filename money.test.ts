@@ -1,9 +1,11 @@
 import Dollar from './money'
 
 test('Dollar', () => {
-    let mymoney = new Dollar(5);
-    mymoney.times(2);
-    expect(mymoney.amount).toBe(10);
-    mymoney.times(3);
-    expect(mymoney.amount).toBe(15);
+    const five = new Dollar(5);
+    const ten = five.times(2);
+    expect(ten.amount).toBe(10);
+    const fifteen = five.times(3);
+    expect(fifteen.amount).toBe(15);
+    // five is still five (immutability)
+    expect(five.amount).toBe(5);
 })

@@ -9,3 +9,9 @@ test('Dollar', () => {
     // five is still five (immutability)
     expect(five.amount).toBe(5);
 })
+
+test('Equals', () => {
+    const five = new Dollar(5);
+    expect(five.equals(new Dollar(5))).toBe(true);
+    expect(five.equals(new Dollar(6))).toBe(false);
+})

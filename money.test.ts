@@ -1,5 +1,9 @@
 import Dollar from './money'
 
+/** TODO
+ * Dollar 型の判定
+ */
+
 test('Dollar', () => {
     const five = new Dollar(5);
     const ten = five.times(2);
@@ -14,4 +18,6 @@ test('Equals', () => {
     const five = new Dollar(5);
     expect(five.equals(new Dollar(5))).toBe(true);
     expect(five.equals(new Dollar(6))).toBe(false);
+    // TODO: expect(five.equals(3).toBe(false);
+
 })

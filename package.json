@@ -6,7 +6,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/exercism/typescript"
+    "url": "https://github.com/mob-docker/ttdd"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
@@ -20,6 +20,7 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
+    "watch": "jest --watch",
     "test": "yarn lint:types && jest --no-cache",
     "lint": "yarn lint:types && yarn lint:ci",
     "lint:types": "yarn tsc --noEmit -p .",

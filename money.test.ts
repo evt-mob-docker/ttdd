@@ -1,13 +1,15 @@
-import Dollar, { isDollar } from './money'
+import Dollar, { isDollar, Franc } from './money'
 
 /** TODO
  * Dollar 型の判定
  * $5 + 10 CHF = $10 (rate 2:1)
- * amount を privateにする
  * Moneyの丸め処理どうする？
  * hashCode()
  * nullとの等価性比較
  * 他のオブジェクトとの等価性比較
+ * DollarとFrancの重複
+ * equalの一般化
+ * timesの一般化
  */
 
 test('Multiplication', () => {
@@ -26,4 +28,11 @@ test('Equality', () => {
 
 test('isDollar', () => {
     expect(isDollar(new Dollar(1))).toBe(true);
+})
+
+test('FrancMultiplication', () => {
+    const five = new Franc(5);
+    // assertEquals(x,y) -> assertTrue(x.equals(y));
+    expect(five.times(2).equals(new Franc(10))).toBe(true);
+    expect(five.times(3).equals(new Franc(15))).toBe(true);
 })

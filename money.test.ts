@@ -1,4 +1,4 @@
-import { isDollar, Money, Franc } from './money'
+import { Money } from './money'
 
 /** TODO
  * Dollar 型の判定
@@ -25,32 +25,13 @@ test('Equality', () => {
     expect(Money.dollar(5).equals(Money.dollar(6))).toBe(false);
     expect(Money.dollar(5).equals(3)).toBe(false);
 
-    expect(Money.franc(5).equals(Money.franc(5))).toBe(true);
-    expect(Money.franc(5).equals(Money.franc(6))).toBe(false);
-
     expect(Money.franc(5).equals(Money.dollar(5))).toBe(false);
 })
 
-test('isDollar', () => {
-    expect(isDollar(Money.dollar(1))).toBe(true);
-})
-
-test('FrancMultiplication', () => {
-    const five = Money.franc(5);
-    // assertEquals(x,y) -> assertTrue(x.equals(y));
-    expect(five.times(2).equals(Money.franc(10))).toBe(true);
-    expect(five.times(3).equals(Money.franc(15))).toBe(true);
-})
 test('Currency', () => {
     expect(Money.dollar(5).currency()).toBe('USD');
     expect(Money.franc(5).currency()).toBe('CHF');
 })
-
-// バグを再現するテスト
-test('DifferentClassEquality', () => {
-    expect(new Money(10, 'CHF').equals(new Franc(10, 'CHF'))).toBe(true);
-})
-
 
 /**
  * DONE

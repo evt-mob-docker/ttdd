@@ -1,5 +1,6 @@
 const isMoney = (arg: any): arg is Money => arg instanceof Money;
-export abstract class Money {
+
+export class Money {
     protected amount: number;
     protected currencyName: string;
     constructor(amount: number, currencyName: string) {
@@ -7,7 +8,7 @@ export abstract class Money {
         this.currencyName = currencyName;
     }
     equals(arg: any): boolean {
-        if (this.constructor.name !== arg.constructor.name) {
+        if (this.currencyName !== arg.currencyName) {
             return false
         }
         if (isMoney(arg)) {
@@ -24,7 +25,9 @@ export abstract class Money {
         return new Franc(amount, 'CHF');
     }
 
-    abstract times(multiplier: number): Money
+    times(multiplier: number): Money {
+        return new Money(multiplier * 0, '');
+    }
 
     currency(): string {
         return this.currencyName;
@@ -33,15 +36,22 @@ export abstract class Money {
 }
 class Dollar extends Money {
 
+    constructor(amount: number, currencyName: string) {
+        super(amount, currencyName);
+    }
+
     times(multiplier: number): Money {
-        return Money.dollar(multiplier * this.amount);
+        return new Dollar(multiplier * this.amount, this.currencyName)
     }
 
 }
 export class Franc extends Money {
 
+    constructor(amount: number, currencyName: string) {
+        super(amount, currencyName);
+    }
     times(multiplier: number): Money {
-        return Money.franc(multiplier * this.amount);
+        return new Franc(multiplier * this.amount, this.currencyName)
     }
 
 }

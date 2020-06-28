@@ -1,4 +1,4 @@
-import { isDollar, Money } from './money'
+import { isDollar, Money, Franc } from './money'
 
 /** TODO
  * Dollar 型の判定
@@ -44,12 +44,19 @@ test('FrancMultiplication', () => {
 test('Currency', () => {
     expect(Money.dollar(5).currency()).toBe('USD');
     expect(Money.franc(5).currency()).toBe('CHF');
-}
-)
+})
+
+// バグを再現するテスト
+test('DifferentClassEquality', () => {
+    expect(new Money(10, 'CHF').equals(new Franc(10, 'CHF'))).toBe(true);
+})
 
 
 /**
  * DONE
  * equalの一般化
  * FrancとDollarを比較する
+ * Referctering(常にグリーン) と バグ(まずレッドにする失敗するテストを追加)の違い
+ * Referctering : コードの振る舞いが変わらないので常にグリーン
+ * バグ：コードの振る舞いをかえてOK。バグなので。ある意味、くくりで言うと新機能の追加も同じこと。
  */

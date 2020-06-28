@@ -6,6 +6,9 @@ class Money {
         this.amount = amount;
     }
     equals(arg: any): boolean {
+        if (this.constructor.name !== arg.constructor.name) {
+            return false
+        }
         if (isMoney(arg)) {
             return this.amount === arg.amount;
         }

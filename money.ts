@@ -2,8 +2,8 @@ const isMoney = (arg: any): arg is Money => arg instanceof Money;
 class Money {
     protected amount: number;
 
-    constructor() {
-        this.amount = 0;
+    constructor(amount: number) {
+        this.amount = amount;
     }
     equals(arg: any): boolean {
         if (isMoney(arg)) {
@@ -15,8 +15,7 @@ class Money {
 class Dollar extends Money {
 
     constructor(amount: number) {
-        super();
-        this.amount = amount;
+        super(amount);
     }
 
     times(multiplier: number): Dollar {
@@ -24,22 +23,14 @@ class Dollar extends Money {
     }
 
 }
-export class Franc {
-    private amount: number;
+export class Franc extends Money {
 
     constructor(amount: number) {
-        this.amount = amount;
+        super(amount);
     }
 
     times(multiplier: number): Franc {
         return new Franc(multiplier * this.amount);
-    }
-    equals(arg: any): boolean {
-        if (isFranc(arg)) {
-            return this.amount === arg.amount;
-        }
-        console.log(arg);
-        return false;
     }
 }
 

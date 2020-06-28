@@ -9,6 +9,7 @@ import { isDollar, Money } from './money'
  * 他のオブジェクトとの等価性比較
  * DollarとFrancの重複
  * timesの一般化
+ * currencyが文字列で表されているのがいまいち
  */
 
 test('Multiplication', () => {
@@ -40,6 +41,11 @@ test('FrancMultiplication', () => {
     expect(five.times(2).equals(Money.franc(10))).toBe(true);
     expect(five.times(3).equals(Money.franc(15))).toBe(true);
 })
+test('Currency', () => {
+    expect(Money.dollar(5).currency()).toBe('USD');
+    expect(Money.franc(5).currency()).toBe('CHF');
+}
+)
 
 
 /**

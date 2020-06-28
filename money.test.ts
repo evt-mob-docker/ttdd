@@ -10,17 +10,14 @@ import Dollar, { isDollar } from './money'
  * 他のオブジェクトとの等価性比較
  */
 
-test('Dollar', () => {
+test('Multiplication', () => {
     const five = new Dollar(5);
-    const ten = five.times(2);
-    expect(ten.amount).toBe(10);
-    const fifteen = five.times(3);
-    expect(fifteen.amount).toBe(15);
-    // five is still five (immutability)
-    expect(five.amount).toBe(5);
+    // assertEquals(x,y) -> assertTrue(x.equals(y));
+    expect(five.times(2).equals(new Dollar(10))).toBe(true);
+    expect(five.times(3).equals(new Dollar(15))).toBe(true);
 })
 
-test('Equals', () => {
+test('Equality', () => {
     const five = new Dollar(5);
     expect(five.equals(new Dollar(5))).toBe(true);
     expect(five.equals(new Dollar(6))).toBe(false);

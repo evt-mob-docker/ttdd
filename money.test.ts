@@ -1,4 +1,4 @@
-import Dollar, { isDollar, Franc } from './money'
+import { isDollar, Money } from './money'
 
 /** TODO
  * Dollar 型の判定
@@ -12,32 +12,33 @@ import Dollar, { isDollar, Franc } from './money'
  */
 
 test('Multiplication', () => {
-    const five = new Dollar(5);
+    // const five = new Dollar(5);
+    const five: Money = Money.dollar(5);
     // assertEquals(x,y) -> assertTrue(x.equals(y));
-    expect(five.times(2).equals(new Dollar(10))).toBe(true);
-    expect(five.times(3).equals(new Dollar(15))).toBe(true);
+    expect(five.times(2).equals(Money.dollar(10))).toBe(true);
+    expect(five.times(3).equals(Money.dollar(15))).toBe(true);
 })
 
 test('Equality', () => {
-    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
-    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
-    expect(new Dollar(5).equals(3)).toBe(false);
+    expect(Money.dollar(5).equals(Money.dollar(5))).toBe(true);
+    expect(Money.dollar(5).equals(Money.dollar(6))).toBe(false);
+    expect(Money.dollar(5).equals(3)).toBe(false);
 
-    expect(new Franc(5).equals(new Franc(5))).toBe(true);
-    expect(new Franc(5).equals(new Franc(6))).toBe(false);
+    expect(Money.franc(5).equals(Money.franc(5))).toBe(true);
+    expect(Money.franc(5).equals(Money.franc(6))).toBe(false);
 
-    expect(new Franc(5).equals(new Dollar(5))).toBe(false);
+    expect(Money.franc(5).equals(Money.dollar(5))).toBe(false);
 })
 
 test('isDollar', () => {
-    expect(isDollar(new Dollar(1))).toBe(true);
+    expect(isDollar(Money.dollar(1))).toBe(true);
 })
 
 test('FrancMultiplication', () => {
-    const five = new Franc(5);
+    const five = Money.franc(5);
     // assertEquals(x,y) -> assertTrue(x.equals(y));
-    expect(five.times(2).equals(new Franc(10))).toBe(true);
-    expect(five.times(3).equals(new Franc(15))).toBe(true);
+    expect(five.times(2).equals(Money.franc(10))).toBe(true);
+    expect(five.times(3).equals(Money.franc(15))).toBe(true);
 })
 
 

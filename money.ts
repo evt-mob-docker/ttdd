@@ -1,5 +1,5 @@
 const isMoney = (arg: any): arg is Money => arg instanceof Money;
-class Money {
+export abstract class Money {
     protected amount: number;
 
     constructor(amount: number) {
@@ -14,6 +14,17 @@ class Money {
         }
         return false;
     }
+
+    static dollar(amount: number): Money {
+        return new Dollar(amount);
+    }
+
+    static franc(amount: number): Money {
+        return new Franc(amount);
+    }
+
+    abstract times(multiplier: number): Money
+
 }
 class Dollar extends Money {
 
@@ -21,7 +32,7 @@ class Dollar extends Money {
         super(amount);
     }
 
-    times(multiplier: number): Dollar {
+    times(multiplier: number): Money {
         return new Dollar(multiplier * this.amount);
     }
 
@@ -32,7 +43,7 @@ export class Franc extends Money {
         super(amount);
     }
 
-    times(multiplier: number): Franc {
+    times(multiplier: number): Money {
         return new Franc(multiplier * this.amount);
     }
 }

@@ -8,8 +8,8 @@ import Dollar, { isDollar, Franc } from './money'
  * nullとの等価性比較
  * 他のオブジェクトとの等価性比較
  * DollarとFrancの重複
- * equalの一般化
  * timesの一般化
+ * FrancとDollarを比較する
  */
 
 test('Multiplication', () => {
@@ -42,4 +42,5 @@ test('FrancMultiplication', () => {
 
 /**
  * DONE
+ * equalの一般化
  */

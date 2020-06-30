@@ -1,31 +1,23 @@
-export interface Key<T> {
-    compareTo(o: T): number
-    equals(o: T): boolean
+export interface Key {
+    compareTo(o: Key): number
+    equals(o: Key): boolean
 }
 
-export interface Record<K, V> {
-    key(): K
-    value(): V
-}
-
-export class SimpleRecord implements Record<IntKey, string> {
-    private _key: IntKey
-    private _value: string
-    constructor(k: IntKey, v: string) {
-        this._key = k;
-        this._value = v;
+export class Record<K extends Key, V> implements Record<K, V> {
+    private _key: K
+    private _value: V
+    constructor(key: K, value: V) {
+        this._key = key;
+        this._value = value;
     }
-
-    key(): IntKey {
+    key(): K {
         return this._key;
     }
-    value(): string {
+    value(): V {
         return this._value;
     }
 }
-
-// export type Key = number;
-export class IntKey implements Key<IntKey>{
+export class IntKey implements Key {
     private value: number;
     constructor(value: number) {
         this.value = value;

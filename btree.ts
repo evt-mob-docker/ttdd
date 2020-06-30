@@ -24,17 +24,10 @@ export class IntKey implements Key {
     }
 
     compareTo(k: IntKey): number {
-        if (isIntKey(k)) {
-            return this.value - k.value;
-        }
-        throw Error(`cannot be compared to ${k}`);
+        return this.value - k.value;
     }
 
     equals(k: IntKey): boolean {
         return this.value === k.value;
     }
-}
-
-const isIntKey = (arg: any): arg is IntKey => {
-    return arg instanceof IntKey;
 }

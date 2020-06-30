@@ -3,7 +3,7 @@ export interface Key {
     equals(o: Key): boolean
 }
 
-export class Record<K extends Key, V> implements Record<K, V> {
+export class Record<K extends Key, V> {
     private _key: K
     private _value: V
     constructor(key: K, value: V) {

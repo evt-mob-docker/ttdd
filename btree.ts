@@ -1,5 +1,6 @@
 export interface Key<T> {
     compareTo(o: T): number
+    equals(o: T): boolean
 }
 // export type Key = number;
 export class IntKey implements Key<IntKey>{
@@ -13,6 +14,10 @@ export class IntKey implements Key<IntKey>{
             return this.value - k.value;
         }
         throw Error(`cannot be compared to ${k}`);
+    }
+
+    equals(k: IntKey): boolean {
+        return this.value === k.value;
     }
 }
 

@@ -1,4 +1,4 @@
-import { IntKey } from './btree';
+import { IntKey, SimpleRecord } from './btree';
 
 describe('IntKey', () => {
     test('can be compared to each other', () => {
@@ -13,7 +13,7 @@ describe('IntKey', () => {
     });
 })
 
-// test('Record', () => {
-//     const record = new Record<IntKey, string>(new IntKey(1), 'value');
-//     expect(record.getKey.equals(new IntKey(1))).toBe(true));
-// });
+test('Record', () => {
+    const record = new SimpleRecord(new IntKey(1), 'value');
+    expect(record.key().equals(new IntKey(1))).toBe(true);
+});

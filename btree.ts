@@ -2,6 +2,28 @@ export interface Key<T> {
     compareTo(o: T): number
     equals(o: T): boolean
 }
+
+export interface Record<K, V> {
+    key(): K
+    value(): V
+}
+
+export class SimpleRecord implements Record<IntKey, string> {
+    private _key: IntKey
+    private _value: string
+    constructor(k: IntKey, v: string) {
+        this._key = k;
+        this._value = v;
+    }
+
+    key(): IntKey {
+        return this._key;
+    }
+    value(): string {
+        return this._value;
+    }
+}
+
 // export type Key = number;
 export class IntKey implements Key<IntKey>{
     private value: number;

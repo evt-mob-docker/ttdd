@@ -63,7 +63,12 @@ test('testPlusReturnsSum', () => {
     expect(five.equals(sum.addend));
 })
 
-
+test('testReduceSum', () => {
+    const sum: Sum = new Sum(Money.dollar(4), Money.dollar(3));
+    const bank = new Bank();
+    const result: Money = bank.reduce(sum, "USD");
+    expect(Money.dollar(7).equals(result)).toBe(true);
+})
 
 
 /**

@@ -40,12 +40,17 @@ export class Money implements Expression {
         return new Sum(this, addend);
     }
 
+    getAmount(): number {
+        return this.amount;
+    }
 }
 
 export class Bank {
     reduce(exp: Expression, currencyName: string): Money {
-        console.log(exp);
-        return new Money(10, currencyName);
+        if (exp instanceof Sum) {
+            return new Money(exp.addend.getAmount() + exp.augend.getAmount(), currencyName);
+        }
+        throw Error();
     }
 }
 

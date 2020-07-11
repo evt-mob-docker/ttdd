@@ -48,7 +48,7 @@ export class Money implements Expression {
 export class Bank {
     reduce(exp: Expression, currencyName: string): Money {
         if (exp instanceof Sum) {
-            return new Money(exp.addend.getAmount() + exp.augend.getAmount(), currencyName);
+            return exp.reduce(currencyName);
         }
         throw Error();
     }
@@ -60,5 +60,9 @@ export class Sum implements Expression {
     constructor(augend: Money, addend: Money) {
         this.augend = augend;
         this.addend = addend;
+    }
+
+    reduce(to: string): Money {
+        return new Money(this.augend.getAmount() + this.addend.getAmount(), to);
     }
 }

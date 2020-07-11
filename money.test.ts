@@ -5,6 +5,7 @@ import { Money, Expression, Bank, Sum } from './money'
  * $5 + 10 CHF = $10 (rate 2:1)
  * $5 + $5 = 10
  * $5 + $5 がMoneyを返す
+ * Bank.reduce(Money)
  */
 
 /** TODO(old)

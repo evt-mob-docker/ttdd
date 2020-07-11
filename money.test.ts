@@ -1,6 +1,12 @@
 import { Money } from './money'
 
-/** TODO
+/**TODO
+ * 
+ * $5 + 10 CHF = $10 (rate 2:1)
+ * $5 + $5 = 10
+ */
+
+/** TODO(old)
  * Dollar 型の判定
  * $5 + 10 CHF = $10 (rate 2:1)
  * Moneyの丸め処理どうする？
@@ -32,6 +38,12 @@ test('Currency', () => {
     expect(Money.dollar(5).currency()).toBe('USD');
     expect(Money.franc(5).currency()).toBe('CHF');
 })
+
+test('Addition', () => {
+    const sum = Money.dollar(5).plus(Money.dollar(5));
+    expect(sum.equals(Money.dollar(10)));
+})
+
 
 /**
  * DONE

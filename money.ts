@@ -33,5 +33,9 @@ export class Money {
         return this.currencyName;
     }
 
+    plus(addend: Money): Money {
+        return new Money(addend.amount + this.amount, this.currencyName);
+    }
+
 }
 

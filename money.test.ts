@@ -1,4 +1,4 @@
-import { Money } from './money'
+import { Money, Expression, Bank } from './money'
 
 /**TODO
  * 
@@ -39,10 +39,22 @@ test('Currency', () => {
     expect(Money.franc(5).currency()).toBe('CHF');
 })
 
-test('Addition', () => {
-    const sum = Money.dollar(5).plus(Money.dollar(5));
-    expect(sum.equals(Money.dollar(10)));
+// test('testAddition', () => {
+//     const sum = Money.dollar(5).plus(Money.dollar(5));
+//     expect(sum.equals(Money.dollar(10)));
+// });
+
+// 最終的にやりたいこと
+// Expression(式) bank.reduce($5 + 10 CHF + 100 JPY, "USD") = $7.5
+test('testSimpleAddition', () => {
+    const five = Money.dollar(5);
+    const sum: Expression = five.plus(five);
+    const bank = new Bank();
+    const reduced = bank.reduce(sum, "USD"); // bank.reduce($5 + $5, "USD") = $10
+    expect(Money.dollar(10).equals(reduced)).toBe(true); // assertion: 「reducedは$10に等しい」が成り立つことを要請する
 })
+
+
 
 
 /**

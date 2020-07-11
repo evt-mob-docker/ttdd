@@ -1,6 +1,9 @@
 const isMoney = (arg: any): arg is Money => arg instanceof Money;
 
-export class Money {
+export interface Expression {
+
+}
+export class Money implements Expression {
     protected amount: number;
     protected currencyName: string;
     constructor(amount: number, currencyName: string) {
@@ -33,9 +36,15 @@ export class Money {
         return this.currencyName;
     }
 
-    plus(addend: Money): Money {
+    plus(addend: Money): Expression {
         return new Money(addend.amount + this.amount, this.currencyName);
     }
 
 }
 
+export class Bank {
+    reduce(exp: Expression, currencyName: string): Money {
+        console.log(exp);
+        return new Money(10, currencyName);
+    }
+}

@@ -37,7 +37,7 @@ export class Money implements Expression {
     }
 
     plus(addend: Money): Expression {
-        return new Money(addend.amount + this.amount, this.currencyName);
+        return new Sum(this, addend);
     }
 
 }
@@ -46,5 +46,14 @@ export class Bank {
     reduce(exp: Expression, currencyName: string): Money {
         console.log(exp);
         return new Money(10, currencyName);
+    }
+}
+
+export class Sum implements Expression {
+    public augend: Money;
+    public addend: Money;
+    constructor(augend: Money, addend: Money) {
+        this.augend = augend;
+        this.addend = addend;
     }
 }

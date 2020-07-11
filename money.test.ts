@@ -1,9 +1,10 @@
-import { Money, Expression, Bank } from './money'
+import { Money, Expression, Bank, Sum } from './money'
 
 /**TODO
  * 
  * $5 + 10 CHF = $10 (rate 2:1)
  * $5 + $5 = 10
+ * $5 + $5 がMoneyを返す
  */
 
 /** TODO(old)
@@ -52,6 +53,14 @@ test('testSimpleAddition', () => {
     const bank = new Bank();
     const reduced = bank.reduce(sum, "USD"); // bank.reduce($5 + $5, "USD") = $10
     expect(Money.dollar(10).equals(reduced)).toBe(true); // assertion: 「reducedは$10に等しい」が成り立つことを要請する
+})
+
+test('testPlusReturnsSum', () => {
+    const five = Money.dollar(5);
+    const result: Expression = five.plus(five);
+    const sum: Sum = result as Sum;
+    expect(five.equals(sum.augend));
+    expect(five.equals(sum.addend));
 })
 
 
